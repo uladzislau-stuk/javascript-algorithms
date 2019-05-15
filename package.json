@@ -1,0 +1,22 @@
+{
+  "name": "My project",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "esm": "^3.2.22"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uladzislau-stuk/javascript-algorithms.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uladzislau-stuk/javascript-algorithms/issues"
+  },
+  "homepage": "https://github.com/uladzislau-stuk/javascript-algorithms#readme"
+}

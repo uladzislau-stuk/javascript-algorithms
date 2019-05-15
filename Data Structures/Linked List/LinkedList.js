@@ -1,54 +1,35 @@
 import LinkedListNode from './LinkedListNode.js'
-import Comparator from '../utils/comparator/Comparator.js'
 
 'use strict'
 
 export default class LinkedList {
-	/**
-	 * @param {Function} [comparatorFunction]
-	 */
-	constructor(comparatorFunction) {
-		/** @var LinkedListNode */
+	constructor () {
 		this.head = null
-
-		/** @var LinkedListNode */
 		this.tail = null
-
-		this.compare = new Comparator(comparatorFunction)
 	}
 
-	/**
-	 * @param {*} value
-	 * @return {LinkedList}
-	 */
 	prepend(value) {
 		const newNode = new LinkedListNode(value, this.head)
-		this.head = newNode;
+		this.head = newNode
 
-		// If there is no tail yet let's make new node a tail.
 		if (!this.tail) {
 			this.tail = newNode
 		}
 
-		return this;
+		return this
 	}
 
-	/**
-	 * @param {*} value
-	 * @returns {LinkedList}
-	 */
 	append(value) {
 		const newNode = new LinkedListNode(value)
 
-		// If there is no head yet let's make new node a head.
-		if(!this.head) {
+		if (!this.tail) {
 			this.head = newNode
 			this.tail = newNode
 
-			return this
+			return this;
 		}
 
-		// Attach new node to the end of linked list.
+		// Attach new node to the end of the list
 		this.tail.next = newNode
 		// Replace old node new
 		this.tail = newNode
@@ -56,7 +37,6 @@ export default class LinkedList {
 		return this;
 	}
 
-	// delete
 	deleteHead() {
 		if (!this.head) {
 			return null
@@ -64,18 +44,66 @@ export default class LinkedList {
 
 		const deletedHead = this.head
 
-		if(this.head.next) {
-			this.head = this.head.next
+		if (deletedHead.next) {
+			this.head = deletedHead.next
 		} else {
-			this.head = null
+			this.tail = null
 			this.tail = null
 		}
 
-		return deletedHead
+		return this
+	}
+
+	deleteTile() {
+		const deletedTail = this.tail
+
+		// There is only one node in linked list
+		if (this.head === this.tail) {
+			this.head = null
+			this.tail = null
+
+			return deletedTail
+		}
+
+		let currentNode = this.head
+
+		while (currentNode.next) {
+			if (currentNode.next.next) {
+				currentNode = currentNode.next;
+			} else {
+				currentNode.next = null
+			}
+		}
+
+		this.tail = currentNode
+
+		return deletedTail
+	}
+
+	find(index) {
+		let startIndex = 0
+
+		if (!this.head) {
+			return null
+		}
+
+		let currentNode = this.head
+
+		while (currentNode) {
+			if (startIndex === index) {
+				return currentNode
+			} else if (currentNode.next) {
+				startIndex++
+				currentNode = currentNode.next
+			} else {
+				return null;
+			}
+		}
 	}
 }
 
-const list = new LinkedList(Comparator)
-list.append('Hello').append('my').append('friend').append('how').append('are you').prepend('!')
-console.log(list)
-	// .append('My').append('Best').append('Friend')
+const list = new LinkedList()
+list.append('Im Vlad').append('my').append('dog').append('blue').append('color')
+
+console.log(list.find(2))
+// .deleteTile()

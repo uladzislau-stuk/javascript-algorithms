@@ -1,13 +1,11 @@
-import DoublyLinkedListNode from '../DoublyLinkedListNode.js'
-import Comparator from '../../utils/comparator/Comparator.js'
+import DoublyLinkedListNode from './DoublyLinkedListNode.js'
 
 'use strict'
 
 export default class DoublyLinkedList {
-    constructor (comparatorFunction) {
+    constructor () {
         this.head = null
         this.tail = null
-        this.compare = new Comparator(comparatorFunction)
     }
 
     prepend(value) {
@@ -20,7 +18,6 @@ export default class DoublyLinkedList {
             return this
         }
 
-        // Attach to previous
         return this
     }
 
@@ -33,8 +30,7 @@ export default class DoublyLinkedList {
 
             return this
         }
-
-        // Attach new node to the linked tail
+        
         this.tail.next = newNode
         newNode.prev = this.tail
         this.tail = newNode
@@ -45,7 +41,6 @@ export default class DoublyLinkedList {
 
 }
 
-const list = new DoublyLinkedList(Comparator)
+const list = new DoublyLinkedList()
 list.prepend('Hello').append('END').prepend('my').prepend('friend!')
 console.log(list.head)
-// .deleteTile()
